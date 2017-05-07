@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>stockEx</title>
+  </head>
+
+  <style>
+    body {
+      font-family: "Monaco";
+      background-color: black;
+      color: white;
+    }
+    div.footer {
+      position: relative;
+      bottom: 5px;
+    }
+  </style>
+  <body>
+    <div id="header">
+      <h1>Welcome to stockEx!</h1>
+      <p>Created by Paul, 2017</p>
+      <h3>Current Share: Apple Inc.</h3>
+    </div>
+
+    <div id="price">
+      Loading...
+    </div>
+
+    <div id="updown">
+      Loading...
+    </div>
+
+    <script>
+
+      var request = require('request');
+
+      setInterval (function(){
+          request("https://www.google.com/finance/info?client=ig&q=aapl", function(error, response, body) {
+          body = body.slice(3);
+          body = JSON.parse(body);
+          console.log(body);
+          newPrice(body);
+      });
+    }, 1000);
+
+      function newPrice(arr) {
+        currentPrice = arr[0]["l"];
+        currentUpDown = arr[0]["c_fix"];
+        document.getElementById('price').innerHTML = "Price: " + currentPrice;
+        document.getElementById('updown').innerHTML = "Up/Down: " + currentUpDown;
+      }
+
+    </script>
+  </body>
+</html>
