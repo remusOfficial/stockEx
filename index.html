@@ -1,56 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>stockEx</title>
-  </head>
-
-  <style>
-    body {
-      font-family: "Monaco";
-      background-color: black;
-      color: white;
-    }
-    div.footer {
-      position: relative;
-      bottom: 5px;
-    }
-  </style>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript" src="stock.js"></script>
   <body>
-    <div id="header">
+
+    <div class="w3-container w3-blue">
       <h1>Welcome to stockEx!</h1>
+    </div>
+
+    <div class="w3-row-padding">
+
+      <div class="w3-third" id="shareNameAAPL">
+        <h2>Apple Inc.</h2>
+      </div>
+
+      <div class="w3-third" id="priceAAPL">
+        <h2>Loading...</h2>
+      </div>
+
+      <div class="w3-third" id="updownAAPL">
+        <h2>Loading...</h2>
+      </div>
+    </div>
+
+    <div class="w3-row-padding">
+
+      <div class="w3-third" id="shareNameGOOGL">
+        <h2>Google Inc.</h2>
+      </div>
+
+      <div class="w3-third" id="priceGOOGL">
+        <h2>Loading...</h2>
+      </div>
+
+      <div class="w3-third" id="updownGOOGL">
+        <h2>Loading...</h2>
+      </div>
+    </div>
+
+    <div class="w3-footer w3-blue">
       <p>Created by Paul, 2017</p>
-      <h3>Current Share: Apple Inc.</h3>
     </div>
 
-    <div id="price">
-      Loading...
-    </div>
-
-    <div id="updown">
-      Loading...
-    </div>
-
-    <script>
-
-      var request = require('request');
-
-      setInterval (function(){
-          request("https://www.google.com/finance/info?client=ig&q=aapl", function(error, response, body) {
-          body = body.slice(3);
-          body = JSON.parse(body);
-          console.log(body);
-          newPrice(body);
-      });
-    }, 1000);
-
-      function newPrice(arr) {
-        currentPrice = arr[0]["l"];
-        currentUpDown = arr[0]["c_fix"];
-        document.getElementById('price').innerHTML = "Price: " + currentPrice;
-        document.getElementById('updown').innerHTML = "Up/Down: " + currentUpDown;
-      }
-
-    </script>
   </body>
 </html>
